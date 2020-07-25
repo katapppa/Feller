@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/24 15:00:00 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/24 15:22:26 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/07/25 18:13:55 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,16 @@
 
 typedef		struct	s_filler
 {
-	char **map;
+	int		coord_x;
+	int		coord_y;
+	char	**map;
 }					t_filler;
+
+typedef		struct	s_feller
+{
+	int		player;
+}					t_feller;
+
+void        get_map(t_filler *meps);
 
 #endif

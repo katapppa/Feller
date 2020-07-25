@@ -6,7 +6,7 @@
 #    By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/24 15:15:06 by cgamora           #+#    #+#              #
-#    Updated: 2020/07/24 15:24:06 by cgamora          ###   ########.fr        #
+#    Updated: 2020/07/25 15:33:14 by cgamora          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ FLAGS = -Wall -Wextra -Werror
 
 all:
 	@make -C libft/ all
-	gcc $(SRC) -o $(NAME) $(FLAGS) $(INCLUDES) 
+	gcc $(SRC) -o $(NAME) $(INCLUDES) 
 
 clean:
 	@make -C libft/ clean
