@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 16:42:54 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/25 17:53:46 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/07/27 15:35:47 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,15 +89,25 @@ int			main(void)
 	printf("%d\n", meps->coord_y);
 	printf("%d\n", meps->coord_x);
 	get_map(meps);
+	find_nemo_coords(meps, info);
+	printf("enemy %d and %d\n", info->enemy_x, info->enemy_y);
+	printf("me %d and %d\n", info->me_x, info->me_y);
+	create_heat_map(info, meps);	
 	int x;
 	int y;
 
 	x = 0;
 	y = 0;
-
-	while (x <= meps->coord_y)
+	while (y < meps->coord_y)
 	{
-		printf("%s\n", meps->map[x]);
-		x++;
+		x = 0;
+		while (x < meps->coord_x)
+		{
+			printf("%3d", meps->heat_map[y][x]);
+			x++;
+		}
+		printf("\n");
+		y++;
 	}
+	return 0;
 }
