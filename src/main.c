@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 16:42:54 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/27 15:35:47 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/07/27 18:10:57 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,9 @@ int			main(void)
 {
     t_filler	*meps;
 	t_feller	*info;
+	t_pieces	*piece;
 
+	piece = (t_pieces*)malloc(sizeof(t_pieces));
     meps = (t_filler*)malloc(sizeof(t_filler));
 	info = (t_feller*)malloc(sizeof(t_feller));
     get_player(info);
@@ -109,5 +111,27 @@ int			main(void)
 		printf("\n");
 		y++;
 	}
+	get_piece(meps, piece);
+	x = 0;
+	while (x < piece->piece_coord_y)
+	{
+		printf("%s\n", piece->piece_map[x]);
+		x++;
+	}
+	x = 0;
+	y = 0;
+	while (y < 2)
+	{
+		printf("%d  ", piece->coords_int_y[y]);
+		y++;
+	}
+	printf("\n");
+	while (x < 2)
+	{
+		printf("%d  ", piece->coords_int_x[x]);
+		x++;
+	}
+	printf("\n");
+	//piece_placer(meps, piece);
 	return 0;
 }

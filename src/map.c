@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 17:22:05 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/27 15:34:24 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/07/27 15:46:38 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,11 @@ void	create_heat_map(t_feller *info, t_filler *meps)
 		while (x < meps->coord_x)
 		{
 			if (meps->map[y][x] == '.')
-				meps->heat_map[y][x] =(mod(y - info->enemy_y) + mod(x - info->enemy_x));
+				meps->heat_map[y][x] = (mod(y - info->enemy_y) + mod(x - info->enemy_x));
+			if (meps->map[y][x] == 'X')
+				meps->heat_map[y][x] = 0;
+			if (meps->map[y][x] == 'O')
+				meps->heat_map[y][x] = -1;
 			x++;
 		}
 		y++;
