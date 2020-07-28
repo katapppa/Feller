@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 16:42:54 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/28 17:01:21 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/07/28 17:35:20 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int			main(void)
     get_player(info);
 	printf("%d\n", info->player);
 	get_coords(meps);
+	get_map(meps);
 	//printf("%d\n", meps->coord_y);
 	//printf("%d\n", meps->coord_x);
 	int shet;
@@ -96,7 +97,6 @@ int			main(void)
 	shet = 0;
 	while (shet != 5)
 	{
-		get_map(meps);
 
 
 		find_nemo_coords(meps, info);
@@ -109,17 +109,17 @@ int			main(void)
 
 		x = 0;
 		y = 0;
-		// while (y < meps->coord_y)
-		// {
-		// 	x = 0;
-		// 	while (x < meps->coord_x)
-		// 	{
-		// 		printf("%3d", meps->heat_map[y][x]);
-		// 		x++;
-		// 	}
-		// 	printf("\n");
-		// 	y++;
-		// }
+		while (y < meps->coord_y)
+		{
+			x = 0;
+			while (x < meps->coord_x)
+			{
+				printf("%3d", meps->heat_map[y][x]);
+				x++;
+			}
+			printf("\n");
+			y++;
+		}
 
 		get_piece(meps, piece);
 		// x = 0;
