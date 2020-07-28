@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 16:42:54 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/27 18:10:57 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/07/28 14:34:07 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,12 @@ int			main(void)
 		x++;
 	}
 	printf("\n");
-	//piece_placer(meps, piece);
+	piece_placer(meps, piece);
+	x = 0;
+	while (x < meps->coord_y)
+	{
+		printf("%s\n", meps->map[x]);
+		x++;
+	}
 	return 0;
 }

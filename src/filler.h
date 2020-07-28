@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/24 15:00:00 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/27 17:58:59 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/07/28 13:30:01 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef		struct	s_pieces
 	int		smesh_y;
 	int		*coords_int_x;
 	int		*coords_int_y;
+	int		stars;
 }					t_pieces;
 
 

@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 14:32:36 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/27 18:03:00 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/07/28 13:24:45 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void		edit_piece(t_filler *meps, t_pieces *piece)
 		}
 		y++;
 	}
+	piece->stars = i;
 	printf("KOL-VO STARS IS: %d\n", i);
 	piece->coords_int_x = (int*)malloc(sizeof(int) * i);
 	piece->coords_int_y = (int*)malloc(sizeof(int) * i);
