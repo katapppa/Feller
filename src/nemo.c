@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 14:32:36 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/28 13:24:45 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/07/28 17:17:51 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,25 +98,33 @@ void		get_piece(t_filler *meps, t_pieces *piece)
 
 	i = 0;
 	get_piece_info(meps, piece);
-	piece->piece_map = (char**)malloc(sizeof(char*) * (piece->piece_coord_y));
-    while (i < piece->piece_coord_x)
+	piece->piece_map = (char**)malloc(sizeof(char*) * (piece->piece_coord_y + 1));
+    while (i <= piece->piece_coord_x)
     {
         piece->piece_map[i] = (char*)malloc(sizeof(char) * (piece->piece_coord_x + 1));
         i++;
     }
+	printf("thats fine!\n");
 	i = 0;
 	y = 0;
 	while ((get_next_line(0, &line)) && piece->piece_coord_y > y)
 	{
 		i = 0;
+		//printf("1 is :%s\n", line);
 		while (line[i])
 		{
+			//printf("befor %c\n", line[i]);
+			//printf("befor %c\n", piece->piece_map[y][i]);
 			piece->piece_map[y][i] = line[i];
+			//printf("after %c\n", line[i]);
+			//printf("after %c\n", piece->piece_map[y][i]);
 			i++;
 		}
+		//piece->piece_map[y][i] = '\0';
 		y++;
 		free(line);
 	}
+	printf("thats fine!\n");
 	edit_piece(meps, piece);
 }
 

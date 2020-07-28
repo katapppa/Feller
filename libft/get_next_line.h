@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 17:13:39 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/24 15:08:10 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/07/28 14:44:11 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include "../libft/libft.h"
-# define BUFF_SIZE 44
+# define BUFF_SIZE 1
 
 typedef struct		s_lest
 {

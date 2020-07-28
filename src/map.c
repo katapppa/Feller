@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 17:22:05 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/27 15:46:38 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/07/28 14:42:58 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void        get_map(t_filler *meps)
     meps->map = (char**)malloc(sizeof(char*) * (meps->coord_y));
     while (i <= meps->coord_x)
     {
-        meps->map[i] = (char*)malloc(sizeof(char) * meps->coord_x + 1);
+        meps->map[i] = (char*)malloc(sizeof(char) * (meps->coord_x + 1));
         i++;
     }
     get_next_line(0, &line);
