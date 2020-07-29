@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/24 15:00:00 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/28 13:30:01 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/07/29 16:11:54 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "../libft/libft.h"
 #include "../libft/get_next_line.h"
 
-typedef		struct	s_filler
+typedef		struct	s_filler //meps
 {
 	int		coord_x;
 	int		coord_y;
@@ -24,7 +24,7 @@ typedef		struct	s_filler
 	int		**heat_map;
 }					t_filler;
 
-typedef		struct	s_feller
+typedef		struct	s_feller //info
 {
 	int		player;
 	char	enemy;
@@ -35,14 +35,14 @@ typedef		struct	s_feller
 	int		enemy_y;
 }					t_feller;
 
-typedef		struct	s_helper
+typedef		struct	s_helper //alg
 {
 	int		min_sum;
 	int		sdvig_x;
 	int		sdvig_y;
 }					t_helper;
 
-typedef		struct	s_pieces
+typedef		struct	s_pieces //piece
 {
 	int		piece_coord_x;
 	int		piece_coord_y;
@@ -60,6 +60,8 @@ void        get_map(t_filler *meps);
 void		find_nemo_coords(t_filler *meps, t_feller *info);
 void		create_heat_map(t_feller *info, t_filler *meps);
 void		get_piece(t_filler *meps, t_pieces *piece);
-void		piece_placer(t_filler *meps, t_pieces *piece);
+void		piece_placer(t_filler *meps, t_pieces *piece, t_feller *info);
+void		rewrite_heat_map(t_feller *info, t_filler *meps);
+void		rewrite_map(t_filler *meps);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 14:32:36 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/28 17:17:51 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/07/29 15:13:58 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void		get_piece(t_filler *meps, t_pieces *piece)
 	i = 0;
 	get_piece_info(meps, piece);
 	piece->piece_map = (char**)malloc(sizeof(char*) * (piece->piece_coord_y + 1));
-    while (i <= piece->piece_coord_x)
+    while (i <= piece->piece_coord_y)
     {
         piece->piece_map[i] = (char*)malloc(sizeof(char) * (piece->piece_coord_x + 1));
         i++;
@@ -142,7 +142,7 @@ void		find_nemo_coords(t_filler *meps, t_feller *info)
 	else
 	{
 		info->me = 'X';
-		info->enemy = '0';
+		info->enemy = 'O';
 	}
 	while (y < meps->coord_y)
 	{

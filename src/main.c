@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 16:42:54 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/28 17:35:20 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/07/29 16:47:52 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,23 +87,51 @@ int			main(void)
 	info = (t_feller*)malloc(sizeof(t_feller));
 
     get_player(info);
-	printf("%d\n", info->player);
+	printf("PLAYER NUMBER IS: %d\n", info->player);
 	get_coords(meps);
+	printf("MAPS COORDS IS: Y:%d AND X:%d\n", meps->coord_y, meps->coord_x);
 	get_map(meps);
-	//printf("%d\n", meps->coord_y);
-	//printf("%d\n", meps->coord_x);
+	printf("MAPS WAS GETTERxDDD\n");
+	find_nemo_coords(meps, info);
+	printf("enemy %d and %d\n", info->enemy_x, info->enemy_y);
+	printf("me %d and %d\n", info->me_x, info->me_y);
+	create_heat_map(info, meps);	
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	while (y < meps->coord_y)
+	{
+		x = 0;
+		while (x < meps->coord_x)
+		{
+			printf("%3d", meps->heat_map[y][x]);
+			x++;
+		}
+		printf("\n");
+		y++;
+	}
+	get_piece(meps, piece);
+	printf("COORD OF PIECE IS: %d AND %d", piece->piece_coord_y, piece->piece_coord_x);
+	piece_placer(meps, piece, info);
+	x = 0;
+	while (x < meps->coord_y)
+	{
+		printf("%s\n", meps->map[x]);
+		x++;
+	}
+	printf("END OF INIT\n");
 	int shet;
 
 	shet = 0;
 	while (shet != 5)
 	{
-
-
-		find_nemo_coords(meps, info);
+		rewrite_map(meps);
+		printf("MAPS WAS GETTERxDDD\n");
 		//printf("enemy %d and %d\n", info->enemy_x, info->enemy_y);
 		//printf("me %d and %d\n", info->me_x, info->me_y);
-
-		create_heat_map(info, meps);	
+		rewrite_heat_map(info, meps);
 		int x;
 		int y;
 
@@ -120,8 +148,8 @@ int			main(void)
 			printf("\n");
 			y++;
 		}
-
 		get_piece(meps, piece);
+		printf("COORD OF PIECE IS: %d AND %d", piece->piece_coord_y, piece->piece_coord_x);
 		// x = 0;
 		// while (x < piece->piece_coord_y)
 		// {
@@ -142,7 +170,7 @@ int			main(void)
 		// 	x++;
 		// }
 		// printf("\n");
-		piece_placer(meps, piece);
+		piece_placer(meps, piece, info);
 		x = 0;
 		while (x < meps->coord_y)
 		{
@@ -150,14 +178,23 @@ int			main(void)
 			x++;
 		}
 		shet++;
-		x = 0;
-		while (x <= piece->piece_coord_x)
-		{
-			free(piece->piece_map[x]);
-			x++;
-		}
-		free(piece->piece_map);
-		free(piece);
+		// while (x <= piece->piece_coord_y)
+		// {
+		// 	free(piece->piece_map[x]);
+		// 	x++;
+		// }
+		// free(piece->coords_int_x);
+		// free(piece->coords_int_y);
+		// free(piece->piece_map);
+		// free(piece);
+		// x = 0;
+		// while (x <= meps->coord_y)
+		// {
+		// 	free(meps->map[x]);
+		// 	x++;
+		// }
+		//free(meps->map);
+		// free(meps);
 	}
 	return 0;
 }

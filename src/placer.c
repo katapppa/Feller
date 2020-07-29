@@ -6,26 +6,26 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 16:58:02 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/28 14:23:13 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/07/29 14:00:03 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 #include <stdio.h>
 
-void		draw_result(t_helper *alg, t_filler *meps, t_pieces *piece)
+void		draw_result(t_helper *alg, t_filler *meps, t_pieces *piece, t_feller *info)
 {
 	int i;
 
 	i = 0;
 	while (i < piece->stars)
 	{
-		meps->map[piece->coords_int_y[i] + alg->sdvig_y][piece->coords_int_x[i] + alg->sdvig_x] = 'O';
+		meps->map[piece->coords_int_y[i] + alg->sdvig_y][piece->coords_int_x[i] + alg->sdvig_x] = info->me;
 		i++;
 	}
 }
 
-void		alg_get_info(t_filler *meps, t_pieces *piece, t_helper *alg)
+void		alg_get_info(t_filler *meps, t_pieces *piece, t_helper *alg, t_feller *info)
 {
 	int i;
 	int min;
@@ -34,7 +34,7 @@ void		alg_get_info(t_filler *meps, t_pieces *piece, t_helper *alg)
 	min = 0;
 	while (i < piece->stars)
 	{
-		if (meps->heat_map[piece->coords_int_y[i] + piece->smesh_y][piece->coords_int_x[i] + piece->smesh_x] == -1)
+		if (meps->heat_map[piece->coords_int_y[i] + piece->smesh_y][piece->coords_int_x[i] + piece->smesh_x] == info->me)
 			i++;
 		min += meps->heat_map[piece->coords_int_y[i] + piece->smesh_y][piece->coords_int_x[i] + piece->smesh_x];
 		i++; 
@@ -81,7 +81,7 @@ int			rules_check_x(t_filler *meps, t_pieces *piece)
 	return (1);
 }
 
-int			rules_check(t_filler *meps, t_pieces *piece)
+int			rules_check(t_filler *meps, t_pieces *piece, t_feller *info)
 {
 	int i;
 	int	flag;
@@ -93,6 +93,8 @@ int			rules_check(t_filler *meps, t_pieces *piece)
 	{
 		if (meps->heat_map[piece->coords_int_y[i] + piece->smesh_y][piece->coords_int_x[i] + piece->smesh_x] == -1)
 			flag++;
+		if (meps->heat_map[piece->coords_int_y[i] + piece->smesh_y][piece->coords_int_x[i] + piece->smesh_x] == 0)
+			return (0);
 		i++;
 	}
 	if (flag != 1)
@@ -100,7 +102,7 @@ int			rules_check(t_filler *meps, t_pieces *piece)
 	return (1);
 }
 
-void		piece_placer(t_filler *meps, t_pieces *piece)
+void		piece_placer(t_filler *meps, t_pieces *piece, t_feller *info)
 {
 	t_helper	*alg;
 
@@ -113,12 +115,12 @@ void		piece_placer(t_filler *meps, t_pieces *piece)
 	{
 		while (rules_check_x(meps, piece))
 		{
-			if (rules_check(meps, piece))
-				alg_get_info(meps, piece, alg);
+			if (rules_check(meps, piece, info))
+				alg_get_info(meps, piece, alg, info);
 			piece->smesh_x++;
 		}
 		piece->smesh_x = 0;
 		piece->smesh_y++;
 	}
-	draw_result(alg, meps, piece);
+	draw_result(alg, meps, piece, info);
 }
