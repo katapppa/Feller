@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 14:32:36 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/30 15:41:11 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/07/30 18:35:58 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,68 @@ void		get_piece_info(t_filler *meps, t_pieces *piece)
 	free(line);
 }
 
+void		move_piece_x(t_filler *meps, t_pieces *piece)
+{
+	int x;
+	int y;
+	int flag_x;
+	int i;
+
+	flag_x = 1;
+	y = 0;
+	while (flag_x)
+	{
+		x = 0;
+		while (x < piece->piece_coord_x)
+		{
+			if (piece->piece_map[y][x] == '*')
+				flag_x = 0;
+			x++;
+		}
+		y++;
+		if (flag_x == 1)
+		{
+			i = 0;
+			while (i < piece->stars)
+			{
+				piece->coords_int_x[i] -= 1;
+				i++;
+			}
+		}
+	}
+}
+
+void		move_piece_y(t_filler *meps, t_pieces *piece)
+{
+	int y;
+	int x;
+	int flag_y;
+	int i;
+
+	flag_y = 1;
+	x = 0;
+	while (flag_y)
+	{
+		y = 0;
+		while (y < piece->piece_coord_y)
+		{
+			if (piece->piece_map[y][x] == '*')
+				flag_y = 0;
+			y++;
+		}
+		x++;
+		if (flag_y == 1)
+		{
+			i = 0;
+			while (i < piece->stars)
+			{
+				piece->coords_int_y[i] -= 1;
+				i++;
+			}
+		}
+	}
+}
+
 void		get_piece(t_filler *meps, t_pieces *piece)
 {
 	int i;
@@ -121,6 +183,8 @@ void		get_piece(t_filler *meps, t_pieces *piece)
 		free(line);
 	}
 	edit_piece(meps, piece);
+	move_piece_y(meps, piece);
+	move_piece_x(meps, piece);
 }
 
 void		find_nemo_coords(t_filler *meps, t_feller *info)
