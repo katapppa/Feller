@@ -6,12 +6,11 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 14:32:36 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/29 15:13:58 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/07/30 15:41:11 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
-#include <stdio.h>
 
 void		edit_piece(t_filler *meps, t_pieces *piece)
 {
@@ -33,7 +32,6 @@ void		edit_piece(t_filler *meps, t_pieces *piece)
 		y++;
 	}
 	piece->stars = i;
-	printf("KOL-VO STARS IS: %d\n", i);
 	piece->coords_int_x = (int*)malloc(sizeof(int) * i);
 	piece->coords_int_y = (int*)malloc(sizeof(int) * i);
 	y = 0;
@@ -86,7 +84,6 @@ void		get_piece_info(t_filler *meps, t_pieces *piece)
 		}
 		i++;
 	}
-	printf("Piece coords is: %d and %d\n", piece->piece_coord_x, piece->piece_coord_y);
 	free(line);
 }
 
@@ -104,10 +101,9 @@ void		get_piece(t_filler *meps, t_pieces *piece)
         piece->piece_map[i] = (char*)malloc(sizeof(char) * (piece->piece_coord_x + 1));
         i++;
     }
-	printf("thats fine!\n");
 	i = 0;
 	y = 0;
-	while ((get_next_line(0, &line)) && piece->piece_coord_y > y)
+	while (piece->piece_coord_y > y && (get_next_line(0, &line)))
 	{
 		i = 0;
 		//printf("1 is :%s\n", line);
@@ -124,7 +120,6 @@ void		get_piece(t_filler *meps, t_pieces *piece)
 		y++;
 		free(line);
 	}
-	printf("thats fine!\n");
 	edit_piece(meps, piece);
 }
 

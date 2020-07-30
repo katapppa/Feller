@@ -6,12 +6,11 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 17:22:05 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/29 16:15:37 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/07/30 16:13:22 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
-#include <stdio.h>
 
 int		mod(int x)
 {
@@ -83,7 +82,11 @@ void	rewrite_map(t_filler *meps)
 	char	*line;
 
 	y = 0;
-	while ((get_next_line(0, &line)) && y < meps->coord_y)
+	get_next_line(0, &line);
+	free(line);
+	get_next_line(0, &line);
+	free(line);
+	while (y < meps->coord_y && (get_next_line(0, &line)))
 	{
 		x = 0;
 		c = 4;
@@ -97,7 +100,7 @@ void	rewrite_map(t_filler *meps)
 		//meps->map[y][x] = '\0';
 		y++;
 	}
-	free(line);
+	//free(line);
 }
 
 int		map_join(t_filler *meps)
@@ -108,8 +111,7 @@ int		map_join(t_filler *meps)
 	char	*line;
 
 	y = 0;
-	printf("%d\n", meps->coord_y);
-	while ((get_next_line(0, &line)) && y < meps->coord_y)
+	while (y < meps->coord_y  && (get_next_line(0, &line)))
 	{
 		x = 0;
 		c = 4;
@@ -123,7 +125,7 @@ int		map_join(t_filler *meps)
 		//meps->map[y][x] = '\0';
 		y++;
 	}
-	free(line);
+	//free(line);
 	return (0);
 }
 
@@ -141,6 +143,5 @@ void        get_map(t_filler *meps)
     }
     get_next_line(0, &line);
     free(line);
-	printf("start map\n");
 	map_join(meps);
 }

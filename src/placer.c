@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 16:58:02 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/29 14:00:03 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/07/30 16:46:31 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@ void		draw_result(t_helper *alg, t_filler *meps, t_pieces *piece, t_feller *info
 		meps->map[piece->coords_int_y[i] + alg->sdvig_y][piece->coords_int_x[i] + alg->sdvig_x] = info->me;
 		i++;
 	}
+	i = 0;
+	//ft_putnbr(piece->coords_int_y[i] + alg->sdvig_y);
+	ft_putnbr(alg->sdvig_y);
+	ft_putchar(' ');
+	ft_putnbr(alg->sdvig_x);
+	//ft_putnbr(piece->coords_int_x[i] + alg->sdvig_x);
+	ft_putchar('\n');
+	//printf("%d %d\n", piece->coords_int_x[i-1] + alg->sdvig_x, piece->coords_int_y[i-1] + alg->sdvig_y);
 }
 
 void		alg_get_info(t_filler *meps, t_pieces *piece, t_helper *alg, t_feller *info)
@@ -102,7 +110,7 @@ int			rules_check(t_filler *meps, t_pieces *piece, t_feller *info)
 	return (1);
 }
 
-void		piece_placer(t_filler *meps, t_pieces *piece, t_feller *info)
+int			piece_placer(t_filler *meps, t_pieces *piece, t_feller *info)
 {
 	t_helper	*alg;
 
@@ -110,7 +118,7 @@ void		piece_placer(t_filler *meps, t_pieces *piece, t_feller *info)
 	piece->smesh_x = 0;
 	piece->smesh_y = 0;
 	alg->min_sum = -3;
-	printf("Start alg\n");
+	//printf("Start alg\n");
 	while (rules_check_y(meps, piece))// proverka na to shto est -1 or 0
 	{
 		while (rules_check_x(meps, piece))
@@ -122,5 +130,8 @@ void		piece_placer(t_filler *meps, t_pieces *piece, t_feller *info)
 		piece->smesh_x = 0;
 		piece->smesh_y++;
 	}
+	if (alg->min_sum == -3)
+		return (0);
 	draw_result(alg, meps, piece, info);
+	return (1);
 }

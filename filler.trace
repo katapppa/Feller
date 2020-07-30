@@ -1,2 +1,5 @@
-seed = 6291
-O: timedout
+seed = 3174
+O: error on input
+./cgamora.filler won
+Score:
+129AGAINST45

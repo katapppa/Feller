@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/24 15:00:00 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/29 16:11:54 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/07/30 16:42:40 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void        get_map(t_filler *meps);
 void		find_nemo_coords(t_filler *meps, t_feller *info);
 void		create_heat_map(t_feller *info, t_filler *meps);
 void		get_piece(t_filler *meps, t_pieces *piece);
-void		piece_placer(t_filler *meps, t_pieces *piece, t_feller *info);
+int			piece_placer(t_filler *meps, t_pieces *piece, t_feller *info);
 void		rewrite_heat_map(t_feller *info, t_filler *meps);
 void		rewrite_map(t_filler *meps);
 
