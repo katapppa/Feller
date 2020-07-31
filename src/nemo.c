@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 14:32:36 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/31 14:39:49 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/07/31 18:07:25 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void		edit_piece(t_filler *meps, t_pieces *piece)
 				piece->coords_int_x[i] = x;
 				piece->coords_int_y[i] = y;
 				i++;
-			}	
+			}
 			x++;
 		}
 		y++;
@@ -156,34 +156,28 @@ void		get_piece_info(t_filler *meps, t_pieces *piece)
 
 void		get_piece(t_filler *meps, t_pieces *piece)
 {
-	int i;
-	int y;
-	char *line;
+	int		i;
+	int		y;
+	char	*line;
 
 	i = 0;
 	get_piece_info(meps, piece);
 	piece->piece_map = (char**)malloc(sizeof(char*) * (piece->piece_coord_y + 1));
-    while (i <= piece->piece_coord_y)
-    {
-        piece->piece_map[i] = (char*)malloc(sizeof(char) * (piece->piece_coord_x + 1));
-        i++;
-    }
+	while (i <= piece->piece_coord_y)
+	{
+		piece->piece_map[i] = (char*)malloc(sizeof(char) * (piece->piece_coord_x + 1));
+		i++;
+	}
 	i = 0;
 	y = 0;
 	while (piece->piece_coord_y > y && (get_next_line(0, &line)))
 	{
 		i = 0;
-		//printf("1 is :%s\n", line);
 		while (line[i])
 		{
-			//printf("befor %c\n", line[i]);
-			//printf("befor %c\n", piece->piece_map[y][i]);
 			piece->piece_map[y][i] = line[i];
-			//printf("after %c\n", line[i]);
-			//printf("after %c\n", piece->piece_map[y][i]);
 			i++;
 		}
-		//piece->piece_map[y][i] = '\0';
 		y++;
 		free(line);
 	}

@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 16:58:02 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/31 16:09:18 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/07/31 18:10:32 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,17 @@ void		draw_result(t_helper *alg, t_filler *meps, t_pieces *piece, t_feller *info
 		i++;
 	}
 	i = 0;
-	//ft_putnbr(piece->coords_int_y[i] + alg->sdvig_y);
 	ft_putnbr(alg->sdvig_y + piece->real_coord_y);
 	ft_putchar(' ');
 	ft_putnbr(alg->sdvig_x + piece->real_coord_x);
-	//ft_putnbr(piece->coords_int_x[i] + alg->sdvig_x);
 	ft_putchar('\n');
-	//printf("%d %d\n", piece->coords_int_x[i-1] + alg->sdvig_x, piece->coords_int_y[i-1] + alg->sdvig_y);
 }
 
 void		alg_get_info(t_filler *meps, t_pieces *piece, t_helper *alg, t_feller *info)
 {
-	int i;
-	int min;
-	
+	int		i;
+	int		min;
+
 	i = 0;
 	min = 0;
 	while (i < piece->stars)
@@ -45,7 +42,7 @@ void		alg_get_info(t_filler *meps, t_pieces *piece, t_helper *alg, t_feller *inf
 		if (meps->heat_map[piece->coords_int_y[i] + piece->smesh_y][piece->coords_int_x[i] + piece->smesh_x] == info->me)
 			i++;
 		min += meps->heat_map[piece->coords_int_y[i] + piece->smesh_y][piece->coords_int_x[i] + piece->smesh_x];
-		i++; 
+		i++;
 	}
 	if (alg->min_sum == -3)
 	{
@@ -69,7 +66,7 @@ int			rules_check_y(t_filler *meps, t_pieces *piece)
 	while (i < piece->stars)
 	{
 		if ((piece->coords_int_y[i] + piece->smesh_y) >= meps->coord_y)
-			return (0);			
+			return (0);
 		i++;
 	}
 	return (1);
@@ -83,7 +80,7 @@ int			rules_check_x(t_filler *meps, t_pieces *piece)
 	while (i < piece->stars)
 	{
 		if ((piece->coords_int_x[i] + piece->smesh_x) >= meps->coord_x)
-			return (0);			
+			return (0);
 		i++;
 	}
 	return (1);
@@ -91,9 +88,9 @@ int			rules_check_x(t_filler *meps, t_pieces *piece)
 
 int			rules_check(t_filler *meps, t_pieces *piece, t_feller *info)
 {
-	int i;
-	int	flag;
-	int	point; 
+	int		i;
+	int		flag;
+	int		point;
 
 	i = 0;
 	flag = 0;
@@ -118,8 +115,7 @@ int			piece_placer(t_filler *meps, t_pieces *piece, t_feller *info)
 	piece->smesh_x = 0;
 	piece->smesh_y = 0;
 	alg->min_sum = -3;
-	//printf("Start alg\n");
-	while (rules_check_y(meps, piece))// proverka na to shto est -1 or 0
+	while (rules_check_y(meps, piece))
 	{
 		while (rules_check_x(meps, piece))
 		{
