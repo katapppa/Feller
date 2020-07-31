@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 17:22:05 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/30 16:13:22 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/07/31 15:44:15 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,53 @@ int		mod(int x)
 		return (-x);	
 }
 
-void	rewrite_heat_map(t_feller *info, t_filler *meps)
+int		real_heat_mapper(t_feller *info, t_filler *meps, int x, int y)
+{
+	int i;
+	int j;
+	int min;
+	int dist;
+
+	j = 0;
+	dist = 0;
+	min = -3;
+	while (j < meps->coord_y)
+	{
+		i = 0;
+		while (i < meps->coord_x)
+		{
+			if (meps->map[j][i] == info->enemy)
+			{
+				dist = (mod(y - j) + mod(x - i));
+				if (min == -3)
+					min = dist;
+				if (dist < min)
+					min = dist;
+			}
+			i++;
+		}
+		j++;
+	}
+	return (min);
+}
+
+/*void	rewrite_het_map(t_feller *info, t_filler *meps)
+{
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	while ()
+	{
+		while ()
+		{
+
+		}
+	}
+}*/
+
+void	rewrite_coords_heat_map(t_feller *info, t_filler *meps)
 {
 	int x;
 	int y;
@@ -33,10 +79,12 @@ void	rewrite_heat_map(t_feller *info, t_filler *meps)
 		x = 0;
 		while (x < meps->coord_x)
 		{
-			if (meps->map[y][x] == info->me || meps->map[y][x] == (info->me) + 32)
+			if (meps->map[y][x] == info->me)
 				meps->heat_map[y][x] = -1;
-			if (meps->map[y][x] == info->enemy || meps->map[y][x] == (info->enemy) + 32)
+			if (meps->map[y][x] == info->enemy/* || meps->map[y][x] == (info->enemy) + 32*/)
 				meps->heat_map[y][x] = 0;
+			if (meps->map[y][x] == '.')
+				meps->heat_map[y][x] = real_heat_mapper(info, meps, x, y);
 			x++;
 		}
 		y++;
@@ -64,9 +112,9 @@ void	create_heat_map(t_feller *info, t_filler *meps)
 		{
 			if (meps->map[y][x] == '.')
 				meps->heat_map[y][x] = (mod(y - info->enemy_y) + mod(x - info->enemy_x));
-			if (meps->map[y][x] == 'X')
+			if (meps->map[y][x] == info->enemy)
 				meps->heat_map[y][x] = 0;
-			if (meps->map[y][x] == 'O')
+			if (meps->map[y][x] == info->me)
 				meps->heat_map[y][x] = -1;
 			x++;
 		}

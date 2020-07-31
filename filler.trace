@@ -1,6 +1,5 @@
-seed = 9739
-O: error on input
-./cgamora.filler: Segfault at 1
+seed = 6177
+X: error on input
 resources/players/carli.filler won
 Score:
-1AGAINST178
+134AGAINST43

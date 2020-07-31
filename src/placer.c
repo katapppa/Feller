@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 16:58:02 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/30 16:46:31 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/07/31 14:45:09 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void		draw_result(t_helper *alg, t_filler *meps, t_pieces *piece, t_feller *info
 	}
 	i = 0;
 	//ft_putnbr(piece->coords_int_y[i] + alg->sdvig_y);
-	ft_putnbr(alg->sdvig_y);
+	ft_putnbr(alg->sdvig_y + piece->real_coord_y);
 	ft_putchar(' ');
-	ft_putnbr(alg->sdvig_x);
+	ft_putnbr(alg->sdvig_x + piece->real_coord_x);
 	//ft_putnbr(piece->coords_int_x[i] + alg->sdvig_x);
 	ft_putchar('\n');
 	//printf("%d %d\n", piece->coords_int_x[i-1] + alg->sdvig_x, piece->coords_int_y[i-1] + alg->sdvig_y);

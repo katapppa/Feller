@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 16:42:54 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/30 16:49:26 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/07/31 15:45:08 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ int			main(void)
 		//printf("MAPS WAS GETTERxDDD\n");
 		//printf("enemy %d and %d\n", info->enemy_x, info->enemy_y);
 		//printf("me %d and %d\n", info->me_x, info->me_y);
-		rewrite_heat_map(info, meps);
+		rewrite_coords_heat_map(info, meps);
 		// int x;
 		// int y;
 
