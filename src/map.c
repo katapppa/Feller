@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 17:22:05 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/31 15:44:15 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/07/31 16:36:45 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ void	create_heat_map(t_feller *info, t_filler *meps)
 	int		i;
 
 	i = 0;
-    meps->heat_map = (int**)malloc(sizeof(int*) * (meps->coord_y));
-    while (i < meps->coord_y)
+    meps->heat_map = (int**)malloc(sizeof(int*) * (meps->coord_y + 1));
+    while (i <= meps->coord_y)
     {
         meps->heat_map[i] = (int*)malloc(sizeof(int) * (meps->coord_x + 1));
         i++;

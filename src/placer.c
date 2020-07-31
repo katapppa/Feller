@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 16:58:02 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/31 14:45:09 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/07/31 16:09:18 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,5 +133,6 @@ int			piece_placer(t_filler *meps, t_pieces *piece, t_feller *info)
 	if (alg->min_sum == -3)
 		return (0);
 	draw_result(alg, meps, piece, info);
+	free(alg);
 	return (1);
 }
