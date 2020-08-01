@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 14:32:36 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/31 18:07:25 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/08/01 12:18:51 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void		get_piece_info(t_filler *meps, t_pieces *piece)
 	i = 0;
 	piece->piece_coord_x = 0;
 	piece->piece_coord_y = 0;
-	while (line[i] != '\0')
+	while (line[i])
 	{
 		if (ft_isdigit(line[i]))
 		{
@@ -178,6 +178,7 @@ void		get_piece(t_filler *meps, t_pieces *piece)
 			piece->piece_map[y][i] = line[i];
 			i++;
 		}
+		piece->piece_map[y][i] = '\0';
 		y++;
 		free(line);
 	}

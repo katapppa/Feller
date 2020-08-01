@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 17:36:43 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/31 18:04:07 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/08/01 11:48:27 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void		free_piece(t_pieces *piece)
 	x = 0;
 	while (x <= piece->piece_coord_y)
 	{
-		free(piece->piece_map[x]);
+		ft_memdel((void**)&(piece->piece_map[x]));
 		x++;
 	}
-	free(piece->coords_int_x);
-	free(piece->coords_int_y);
-	free(piece->piece_map);
+	ft_memdel((void**)&(piece->coords_int_x));
+	ft_memdel((void**)&(piece->coords_int_y));
+	ft_memdel((void**)&(piece->piece_map));
 }
 
 void		init_game(t_feller *info, t_filler *meps, t_pieces *piece)

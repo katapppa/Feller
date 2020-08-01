@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 17:22:05 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/31 18:03:18 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/08/01 13:10:45 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int			real_heat_mapper(t_feller *info, t_filler *meps, int x, int y)
 		i = 0;
 		while (i < meps->coord_x)
 		{
-			if (meps->map[j][i] == info->enemy)
+			if (meps->map[j][i] == info->enemy || meps->map[j][i] == (info->enemy+32))
 			{
 				dist = (mod(y - j) + mod(x - i));
 				if (min == -3)
@@ -63,9 +63,9 @@ void		rewrite_coords_heat_map(t_feller *info, t_filler *meps)
 		x = 0;
 		while (x < meps->coord_x)
 		{
-			if (meps->map[y][x] == info->me)
+			if (meps->map[y][x] == info->me || meps->map[y][x] == (info->me + 32))
 				meps->heat_map[y][x] = -1;
-			if (meps->map[y][x] == info->enemy)
+			if (meps->map[y][x] == info->enemy || meps->map[y][x] == (info->enemy + 32))
 				meps->heat_map[y][x] = 0;
 			if (meps->map[y][x] == '.')
 				meps->heat_map[y][x] = real_heat_mapper(info, meps, x, y);
@@ -123,12 +123,13 @@ void		rewrite_map(t_filler *meps)
 	{
 		x = 0;
 		c = 4;
-		while (line[c])
+		while (x < meps->coord_x /*line[c]*/)
 		{
 			meps->map[y][x] = line[c];
 			x++;
 			c++;
 		}
+		meps->map[y][x] = '\0';
 		free(line);
 		y++;
 	}
@@ -146,15 +147,17 @@ int			map_join(t_filler *meps)
 	{
 		x = 0;
 		c = 4;
-		while (line[c])
+		while (x < meps->coord_x/*line[c]*/)
 		{
 			meps->map[y][x] = line[c];
 			x++;
 			c++;
 		}
+		meps->map[y][x] = '\0';
 		free(line);
 		y++;
 	}
+
 	return (0);
 }
 

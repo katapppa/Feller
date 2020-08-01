@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 16:42:54 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/31 17:48:16 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/08/01 13:49:13 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,17 +74,24 @@ void		free_end(t_pieces *piece, t_filler *meps, t_feller *info)
 	int x;
 
 	x = 0;
-	free(piece);
+	//free(piece);
+	ft_memdel((void**)&piece);
 	while (x <= meps->coord_y)
 	{
-		free(meps->heat_map[x]);
-		free(meps->map[x]);
+		// free(meps->heat_map[x]);
+		// free(meps->map[x]);
+		ft_memdel((void**)&(meps->heat_map[x]));
+		ft_memdel((void**)&(meps->map[x]));
 		x++;
 	}
-	free(meps->map);
-	free(meps->heat_map);
-	free(meps);
-	free(info);
+	// free(meps->map);
+	// free(meps->heat_map);
+	// free(meps);
+	// free(info);
+	ft_memdel((void**)&(meps->map));
+	ft_memdel((void**)&(meps->heat_map));
+	ft_memdel((void**)&(meps));
+	ft_memdel((void**)&(info));
 }
 
 int			main(void)
@@ -105,10 +112,39 @@ int			main(void)
 	{
 		rewrite_map(meps);
 		rewrite_coords_heat_map(info, meps);
+		// int x = 0;
+		// int y = 0;
+
+		// while (y < meps->coord_y)
+		// {
+		// 	x = 0;
+		// 	while (x < meps->coord_x)
+		// 	{
+		// 		printf("%3d", meps->heat_map[y][x]);
+		// 		x++;
+		// 	}
+		// 	printf("\n");
+		// 	y++;
+		// }
 		get_piece(meps, piece);
+		// x = 0;
+		// printf("\n");
+		// while (x < piece->piece_coord_y)
+		// {
+		// 	printf("%s\n", piece->piece_map[x]);
+		// 	x++;
+		// }
+		// y = 0;
+		// while (y < piece->stars)
+		// {
+		// 	printf("Y IS %d AND X IS %d\n", piece->coords_int_y[y], piece->coords_int_x[y]);
+		// 	y++;
+		// }
 		shet = piece_placer(meps, piece, info);
 		free_piece(piece);
 	}
+	//printf("%d %d\n",0, 0);
 	free_end(piece, meps, info);
+	//printf("the end\n");
 	return (0);
 }
