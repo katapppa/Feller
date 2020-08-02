@@ -6,31 +6,13 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 16:58:02 by cgamora           #+#    #+#             */
-/*   Updated: 2020/08/01 13:58:29 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/08/02 16:52:53 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
-#include <stdio.h>
 
-void		draw_result(t_helper *alg, t_filler *meps, t_pieces *piece, t_feller *info)
-{
-	int i;
-
-	// i = 0;
-	// while (i < piece->stars)
-	// {
-	// 	meps->map[piece->coords_int_y[i] + alg->sdvig_y][piece->coords_int_x[i] + alg->sdvig_x] = info->me;
-	// 	i++;
-	// }
-	i = 0;
-	ft_putnbr(alg->sdvig_y + piece->real_coord_y);
-	ft_putchar(' ');
-	ft_putnbr(alg->sdvig_x + piece->real_coord_x);
-	ft_putchar('\n');
-}
-
-void		alg_get_info(t_filler *meps, t_pieces *piece, t_helper *alg, t_feller *info)
+void		alg_get_info(t_filler *meps, t_pieces *piece, t_helper *alg)
 {
 	int		i;
 	int		min;
@@ -39,9 +21,8 @@ void		alg_get_info(t_filler *meps, t_pieces *piece, t_helper *alg, t_feller *inf
 	min = 0;
 	while (i < piece->stars)
 	{
-		//if (meps->heat_map[piece->coords_int_y[i] + piece->smesh_y][piece->coords_int_x[i] + piece->smesh_x] == info->me)
-			//i++;
-		min += meps->heat_map[piece->coords_int_y[i] + piece->smesh_y][piece->coords_int_x[i] + piece->smesh_x];
+		min += meps->heat_map[piece->coords_int_y[i] + piece->smesh_y]
+						[piece->coords_int_x[i] + piece->smesh_x];
 		i++;
 	}
 	if (alg->min_sum == -3)
@@ -86,19 +67,22 @@ int			rules_check_x(t_filler *meps, t_pieces *piece)
 	return (1);
 }
 
-int			rules_check(t_filler *meps, t_pieces *piece, t_feller *info)
+int			rules_check(t_filler *meps, t_pieces *piece)
 {
 	int		i;
 	int		flag;
-	int		point;
 
 	i = 0;
 	flag = 0;
 	while (i < piece->stars)
 	{
-		if (meps->heat_map[piece->coords_int_y[i] + piece->smesh_y][piece->coords_int_x[i] + piece->smesh_x] == -1)
+		if (meps->heat_map[piece->coords_int_y[i] + piece->smesh_y]
+						[piece->coords_int_x[i] + piece->smesh_x] == -1)
 			flag++;
-		if (meps->heat_map[piece->coords_int_y[i] + piece->smesh_y][piece->coords_int_x[i] + piece->smesh_x] == 0)
+		if (meps->heat_map[piece->coords_int_y[i] + piece->smesh_y]
+						[piece->coords_int_x[i] + piece->smesh_x] == 0)
+			return (0);
+		if (flag > 1)
 			return (0);
 		i++;
 	}
@@ -107,7 +91,7 @@ int			rules_check(t_filler *meps, t_pieces *piece, t_feller *info)
 	return (1);
 }
 
-int			piece_placer(t_filler *meps, t_pieces *piece, t_feller *info)
+int			piece_placer(t_filler *meps, t_pieces *piece)
 {
 	t_helper	*alg;
 
@@ -115,23 +99,20 @@ int			piece_placer(t_filler *meps, t_pieces *piece, t_feller *info)
 	piece->smesh_x = 0;
 	piece->smesh_y = 0;
 	alg->min_sum = -3;
-	//printf("alg\n");
 	while (rules_check_y(meps, piece))
 	{
 		while (rules_check_x(meps, piece))
 		{
-			if (rules_check(meps, piece, info))
-				alg_get_info(meps, piece, alg, info);
+			if (rules_check(meps, piece))
+				alg_get_info(meps, piece, alg);
 			piece->smesh_x++;
 		}
 		piece->smesh_x = 0;
 		piece->smesh_y++;
 	}
-	//printf("net tyt oshibka\n");
 	if (alg->min_sum == -3)
 		return (0);
-	//printf("tyt oshibka\n");
-	draw_result(alg, meps, piece, info);
+	draw_result(alg, piece);
 	free(alg);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/24 15:00:00 by cgamora           #+#    #+#             */
-/*   Updated: 2020/07/31 17:44:21 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/08/02 16:52:25 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,25 @@ typedef	struct	s_pieces
 void			get_map(t_filler *meps);
 void			find_nemo_coords(t_filler *meps, t_feller *info);
 void			create_heat_map(t_feller *info, t_filler *meps);
-void			get_piece(t_filler *meps, t_pieces *piece);
-int				piece_placer(t_filler *meps, t_pieces *piece, t_feller *info);
+void			get_piece(t_pieces *piece);
+int				piece_placer(t_filler *meps, t_pieces *piece);
 void			rewrite_coords_heat_map(t_feller *info, t_filler *meps);
 void			rewrite_map(t_filler *meps);
 void			free_piece(t_pieces *piece);
 void			init_game(t_feller *info, t_filler *meps, t_pieces *piece);
 void			get_player(t_feller *info);
 int				get_coords(t_filler *meps);
+void			last_word(void);
+void			draw_result(t_helper *alg, t_pieces *piece);
+int				mod(int x);
+int				real_heat_mapper(t_feller *info, t_filler *meps, int x, int y);
+void			heat_map_helper(t_filler *meps, t_feller *info, int x, int y);
+void			nemo_helper(t_feller *info, t_filler *meps, int x, int y);
+void			stars_coords(t_pieces *piece);
+int				piece_info(char *line, t_pieces *piece, int i);
+void			get_piece_map(t_pieces *piece);
+void			edit_piece(t_pieces *piece);
+void			piece_move_x(t_pieces *piece);
+void			piece_move_y(t_pieces *piece);
 
 #endif

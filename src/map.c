@@ -6,49 +6,11 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 17:22:05 by cgamora           #+#    #+#             */
-/*   Updated: 2020/08/01 13:10:45 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/08/02 16:05:44 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
-
-int			mod(int x)
-{
-	if (x >= 0)
-		return (x);
-	else
-		return (-x);
-}
-
-int			real_heat_mapper(t_feller *info, t_filler *meps, int x, int y)
-{
-	int i;
-	int j;
-	int min;
-	int dist;
-
-	j = 0;
-	dist = 0;
-	min = -3;
-	while (j < meps->coord_y)
-	{
-		i = 0;
-		while (i < meps->coord_x)
-		{
-			if (meps->map[j][i] == info->enemy || meps->map[j][i] == (info->enemy+32))
-			{
-				dist = (mod(y - j) + mod(x - i));
-				if (min == -3)
-					min = dist;
-				if (dist < min)
-					min = dist;
-			}
-			i++;
-		}
-		j++;
-	}
-	return (min);
-}
 
 void		rewrite_coords_heat_map(t_feller *info, t_filler *meps)
 {
@@ -63,9 +25,11 @@ void		rewrite_coords_heat_map(t_feller *info, t_filler *meps)
 		x = 0;
 		while (x < meps->coord_x)
 		{
-			if (meps->map[y][x] == info->me || meps->map[y][x] == (info->me + 32))
+			if (meps->map[y][x] == info->me ||
+						meps->map[y][x] == (info->me + 32))
 				meps->heat_map[y][x] = -1;
-			if (meps->map[y][x] == info->enemy || meps->map[y][x] == (info->enemy + 32))
+			if (meps->map[y][x] == info->enemy ||
+						meps->map[y][x] == (info->enemy + 32))
 				meps->heat_map[y][x] = 0;
 			if (meps->map[y][x] == '.')
 				meps->heat_map[y][x] = real_heat_mapper(info, meps, x, y);
@@ -94,13 +58,7 @@ void		create_heat_map(t_feller *info, t_filler *meps)
 		x = 0;
 		while (x < meps->coord_x)
 		{
-			if (meps->map[y][x] == '.')
-				meps->heat_map[y][x] =
-				(mod(y - info->enemy_y) + mod(x - info->enemy_x));
-			if (meps->map[y][x] == info->enemy)
-				meps->heat_map[y][x] = 0;
-			if (meps->map[y][x] == info->me)
-				meps->heat_map[y][x] = -1;
+			heat_map_helper(meps, info, x, y);
 			x++;
 		}
 		y++;
@@ -123,7 +81,7 @@ void		rewrite_map(t_filler *meps)
 	{
 		x = 0;
 		c = 4;
-		while (x < meps->coord_x /*line[c]*/)
+		while (x < meps->coord_x)
 		{
 			meps->map[y][x] = line[c];
 			x++;
@@ -147,7 +105,7 @@ int			map_join(t_filler *meps)
 	{
 		x = 0;
 		c = 4;
-		while (x < meps->coord_x/*line[c]*/)
+		while (x < meps->coord_x)
 		{
 			meps->map[y][x] = line[c];
 			x++;
@@ -157,7 +115,6 @@ int			map_join(t_filler *meps)
 		free(line);
 		y++;
 	}
-
 	return (0);
 }
 
