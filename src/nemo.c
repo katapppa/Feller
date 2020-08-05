@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 14:32:36 by cgamora           #+#    #+#             */
-/*   Updated: 2020/08/02 16:49:41 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/08/04 14:08:41 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ void		get_piece_info(t_pieces *piece)
 	int		i;
 	char	*line;
 
-	get_next_line(0, &line);
+	if (!(get_next_line(0, &line)))
+		ft_exit(0);
 	i = 0;
 	piece->piece_coord_x = 0;
 	piece->piece_coord_y = 0;
@@ -84,12 +85,14 @@ void		get_piece(t_pieces *piece)
 
 	i = 0;
 	get_piece_info(piece);
-	piece->piece_map = (char**)malloc(sizeof(char*) *
-				(piece->piece_coord_y + 1));
+	if (!(piece->piece_map = (char**)malloc(sizeof(char*) *
+				(piece->piece_coord_y + 1))))
+		ft_exit(0);
 	while (i <= piece->piece_coord_y)
 	{
-		piece->piece_map[i] = (char*)malloc(sizeof(char) *
-				(piece->piece_coord_x + 1));
+		if (!(piece->piece_map[i] = (char*)malloc(sizeof(char) *
+				(piece->piece_coord_x + 1))))
+			ft_exit(0);
 		i++;
 	}
 	get_piece_map(piece);

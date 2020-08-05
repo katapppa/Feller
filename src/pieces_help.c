@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/02 16:19:00 by cgamora           #+#    #+#             */
-/*   Updated: 2020/08/02 16:47:38 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/08/04 14:06:53 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,10 @@ void		edit_piece(t_pieces *piece)
 		y++;
 	}
 	piece->stars = i;
-	piece->coords_int_x = (int*)malloc(sizeof(int) * i);
-	piece->coords_int_y = (int*)malloc(sizeof(int) * i);
+	if (!(piece->coords_int_x = (int*)malloc(sizeof(int) * i)))
+		ft_exit(0);
+	if (!(piece->coords_int_y = (int*)malloc(sizeof(int) * i)))
+		ft_exit(0);
 	stars_coords(piece);
 }
 

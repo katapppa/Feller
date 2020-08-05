@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 16:58:02 by cgamora           #+#    #+#             */
-/*   Updated: 2020/08/02 16:52:53 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/08/04 14:10:25 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ int			piece_placer(t_filler *meps, t_pieces *piece)
 {
 	t_helper	*alg;
 
-	alg = (t_helper*)malloc(sizeof(t_helper));
+	if (!(alg = (t_helper*)malloc(sizeof(t_helper))))
+		ft_exit(0);
 	piece->smesh_x = 0;
 	piece->smesh_y = 0;
 	alg->min_sum = -3;

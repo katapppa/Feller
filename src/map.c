@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 17:22:05 by cgamora           #+#    #+#             */
-/*   Updated: 2020/08/02 16:05:44 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/08/04 13:58:13 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,13 @@ void		create_heat_map(t_feller *info, t_filler *meps)
 	int		i;
 
 	i = 0;
-	meps->heat_map = (int**)malloc(sizeof(int*) * (meps->coord_y + 1));
+	if (!(meps->heat_map = (int**)malloc(sizeof(int*) * (meps->coord_y + 1))))
+		ft_exit(0);
 	while (i <= meps->coord_y)
 	{
-		meps->heat_map[i] = (int*)malloc(sizeof(int) * (meps->coord_x + 1));
+		if (!(meps->heat_map[i] = (int*)malloc(sizeof(int)
+				* (meps->coord_x + 1))))
+			ft_exit(0);
 		i++;
 	}
 	y = 0;
@@ -73,10 +76,7 @@ void		rewrite_map(t_filler *meps)
 	char	*line;
 
 	y = 0;
-	get_next_line(0, &line);
-	free(line);
-	get_next_line(0, &line);
-	free(line);
+	miss_some_str(y);
 	while (y < meps->coord_y && (get_next_line(0, &line)))
 	{
 		x = 0;
@@ -124,13 +124,16 @@ void		get_map(t_filler *meps)
 	char	*line;
 
 	i = 0;
-	meps->map = (char**)malloc(sizeof(char*) * (meps->coord_y + 1));
+	if (!(meps->map = (char**)malloc(sizeof(char*) * (meps->coord_y + 1))))
+		ft_exit(0);
 	while (i <= meps->coord_y)
 	{
-		meps->map[i] = (char*)malloc(sizeof(char) * (meps->coord_x + 1));
+		if (!(meps->map[i] = (char*)malloc(sizeof(char) * (meps->coord_x + 1))))
+			ft_exit(0);
 		i++;
 	}
-	get_next_line(0, &line);
+	if (!(get_next_line(0, &line)))
+		ft_exit(0);
 	free(line);
 	map_join(meps);
 }

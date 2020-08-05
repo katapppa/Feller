@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/24 15:00:00 by cgamora           #+#    #+#             */
-/*   Updated: 2020/08/02 16:52:25 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/08/04 14:01:16 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
+# include <stdio.h>
 
 typedef	struct	s_filler
 {
@@ -79,5 +80,7 @@ void			get_piece_map(t_pieces *piece);
 void			edit_piece(t_pieces *piece);
 void			piece_move_x(t_pieces *piece);
 void			piece_move_y(t_pieces *piece);
+void			ft_exit(int i);
+void			miss_some_str(int y);
 
 #endif

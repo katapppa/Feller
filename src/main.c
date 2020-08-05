@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 16:42:54 by cgamora           #+#    #+#             */
-/*   Updated: 2020/08/02 16:56:00 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/08/04 14:21:33 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ int			get_coords(t_filler *meps)
 
 	meps->coord_y = 0;
 	meps->coord_x = 0;
-	get_next_line(0, &line);
+	if (!(get_next_line(0, &line)))
+		ft_exit(0);
 	get_it(line, meps);
 	free(line);
 	return (1);
@@ -58,7 +59,8 @@ void		get_player(t_feller *info)
 	char	*line;
 
 	info->player = 0;
-	get_next_line(0, &line);
+	if (!(get_next_line(0, &line)))
+		ft_exit(0);
 	if (ft_strstr(line, "p1"))
 		info->player = 1;
 	else
@@ -71,6 +73,7 @@ void		free_end(t_pieces *piece, t_filler *meps, t_feller *info)
 	int x;
 
 	x = 0;
+	last_word();
 	free(piece);
 	while (x <= meps->coord_y)
 	{
@@ -91,12 +94,15 @@ int			main(void)
 	t_pieces	*piece;
 	int			shet;
 
-	piece = (t_pieces*)malloc(sizeof(t_pieces));
-	meps = (t_filler*)malloc(sizeof(t_filler));
-	info = (t_feller*)malloc(sizeof(t_feller));
+	if (!(piece = (t_pieces*)malloc(sizeof(t_pieces))))
+		return (0);
+	if (!(meps = (t_filler*)malloc(sizeof(t_filler))))
+		return (0);
+	if (!(info = (t_feller*)malloc(sizeof(t_feller))))
+		return (0);
+	shet = 1;
 	init_game(info, meps, piece);
 	piece_placer(meps, piece);
-	shet = 1;
 	free_piece(piece);
 	while (shet)
 	{
@@ -106,7 +112,6 @@ int			main(void)
 		shet = piece_placer(meps, piece);
 		free_piece(piece);
 	}
-	last_word();
 	free_end(piece, meps, info);
-	return (0);
+	return (1);
 }
